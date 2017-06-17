@@ -1,0 +1,14 @@
+{
+  "name": "Ecommerce-Web-Portal-Nodejs-Firebase",
+  "short_name": "coVeda",
+  "icons": [{
+    "src": "img/logo.png",
+      "sizes": "125x125",
+      "type": "image/png"
+    }],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "#333",
+  "gcm_sender_id": "103953800507"
+}

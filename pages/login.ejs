@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web-Portal-Login</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Web-Portal">
+  <link rel="apple-touch-icon" href="">
+  <meta name="msapplication-TileImage" content="">
+  <meta name="msapplication-TileColor" content="#2aabd2">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css" >
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css"  >
+<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+<style type="text/css">
+    h1{
+        margin: 30px 0;
+        padding: 0 200px 15px 0;
+        border-bottom: 1px solid #E5E5E5;
+    }
+  .bs-example{
+      margin: 20px;
+    }
+ .loader {
+    float:center;
+    border: 6px solid white; /* Light grey */
+    border-top: 6px solid blue; /* Green */
+    border-radius: 50%;
+    width: 40px;
+    margin-top:250px; 
+    height: 40px;
+    margin-left: 44%;
+    animation: spin 0.8s linear infinite;
+}
+#loader{
+    z-index:9999 !important;position:fixed; background-color:black; opacity: 0.5; height:200%; width:100%; margin-top:0% ;top:50px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+    .logo-div{
+        width:60px;
+        height:auto;
+        background-color: white;
+        margin-top: 0%;
+        padding-top: 0%;
+        margin-left:25% ;
+        border-radius: 10%
+    }
+    .logo-img{
+        width:100%;
+        height:auto;
+    }
+    body{
+        background-color: #cacaca;
+    }
+    .container{
+        float: center;
+        background-color:white;
+        border-radius:10px; 
+        float:center;
+        width: 350px;
+        padding:3% 1% 3% 1%;
+     
+    }
+
+    .container-xs{
+        margin-top:10;
+        background-color:white;
+        border-radius:10px; 
+        padding:3% 1% 3% 1%;
+
+        margin-top:130px;
+    }
+
+
+
+    @media screen and (max-width: 400px){
+    ul.navbar-nav li a {
+        text-align: right;
+        float: none;
+    }
+}
+</style>
+<script type="text/javascript">
+    function adjustStyle(width) {
+  width = parseInt(width);
+  if (width > 600) {
+    $("#box").removeClass("container-xs");
+    $("#box").addClass("container");
+}
+}
+$(function(){
+  adjustStyle($(this).width());
+  $(window).resize(function() {
+    adjustStyle($(this).width());
+  });
+});
+</script>
+</head> 
+<body >
+
+   <div style="">
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Web-Portal</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-brand">
+                <div class="logo-div">
+                    <img src='/img/logo.png' class="logo-img" alt='Logo'>
+                </div>
+            </div>
+                <div  class="navbar-brand">
+                <p class="active" style="color: white">&nbsp Web-Portal &nbsp</p>
+            </div>
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                
+            </ul>
+           
+         <ul class="nav navbar-nav navbar-right">
+
+                 <li class="active"><a href="#" id = "btn-login">Login</a></li>
+                 <li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</li>
+               
+            </ul>
+        </div>
+    </nav>
+    </div>
+<div style="margin-top: 80px"></div>
+
+<div id="loader">
+ <div class="loader"></div>
+</div>
+
+<div id = "body" hidden>
+    <div id="InvalidUserNote" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="btnHome" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" align="center">Invaild Username or Password.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container-xs" id="box">
+<div  align="center">
+                    <img src="/img/logo.png" alt="Sample Image">
+                </div>
+<!--************************* LOGIN TAB *******************************-->
+<div class="bs-example" id="login-tab">
+  
+<form class="form-horizontal"  id = "login-form">
+
+
+<div class="input-group margin-bottom-sm">
+  <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+  <input class="form-control" type="email"  name="log" id = "user_name_login"  placeholder="Email address">
+</div>
+<br>
+<div class="input-group">
+  <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+  <input class="form-control" type="password" name = "pwd" id = "user_pass_login" placeholder="Password" style="border-right:0px "><span class="input-group-addon tip-bottom" data-toggle="tooltip" title="Password must have minimum 6 characters." style="background-color: white"><i class="fa fa-info-circle "></i></span>
+</div>
+<br>
+<div class="btn-group open">
+  <button type="submit" name="sign-in" class="btn btn-primary" href="#">Login</button>
+</div>
+
+    <br><br>
+    <div class="form-group">
+        <div class="col-xs-offset-0 col-xs-12">
+            <a  href="#" id="f-p">Forget Password ?</a>
+        </div>
+    </div>
+</form>
+</div>
+
+<!--*********************** FORGET PASSWORD TAB *********************************-->
+
+<div class="bs-example" id="f-p-tab" style="margin-bottom:" hidden>
+<div style="margin-top: 50px"></div>
+    <h4 >Forget Password ?</h4>
+    <hr>
+
+
+<div class="form-horizontal"  action="/forgetPassword" method="post">
+  
+<div class="input-group margin-bottom-sm">
+  <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+  <input class="form-control" type="email"  name="email" id="email_f"  placeholder="Email address">
+</div>
+    <br>
+    <div class="btn-group open">
+      <button type="submit" id="btn_f" class="btn btn-primary">Submit</button>
+    </div>
+    <br><br>
+    <div class="form-group">
+        <div class="col-xs-offset-0 col-xs-12">
+            <a  href="#" id = "btn-login-1"> Login </a>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+    <!--%%%%%%%%%%%%%%%%%%% FOOTER %%%%%%%%%%%%%%%%%%%%%%%-->
+
+ 
+</body>
+ <script type="text/javascript" src="/js/3-6-10-firebase.js"></script>
+    <script type="text/javascript" src = "/js/login.js"> </script>
+     <script type="text/javascript">
+    $(document).ready(function(){
+
+    var LT=$("#login-tab");
+    var FPT=$("#f-p-tab");
+    var LB=$("#btn-login");
+     var LB1=$("#btn-login-1");
+    var FPB=$("#f-p");
+
+        LB.click(function(){
+
+            LT.slideDown("fast");
+            FPT.slideUp("fast");
+            
+        });
+        LB1.click(function(){
+
+            LT.slideDown("fast");
+            FPT.slideUp("fast");
+            
+        });
+
+        FPB.click(function(){
+
+            FPT.slideDown("fast");
+            LT.slideUp("fast");
+            
+        });
+});
+
+    $(".tip-bottom").tooltip({
+        placement : 'bottom'
+    });
+
+function alertMsg(msg){
+           $("#InvalidUserNote").find("h4").html(msg);
+           $("#InvalidUserNote").modal('show');
+        }
+    </script>
+
+</html>
+ 

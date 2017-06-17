@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web-Portal-Home</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Web-Portal">
+  <link rel="apple-touch-icon" href="">
+  <meta name="msapplication-TileImage" content="">
+  <meta name="msapplication-TileColor" content="#2aabd2">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css" >
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css"  >
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+/* Hide HTML5 Up and Down arrows. */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+    h1{
+        margin: 30px 0;
+        padding: 0 200px 15px 0;
+        border-bottom: 1px solid #E5E5E5;
+    }
+  .bs-example{
+      margin: 20px;
+    }
+    .loader {
+        float:center;
+    border: 6px solid white; /* Light grey */
+    border-top: 6px solid blue; /* Green */
+    border-radius: 50%;
+    width: 40px;
+    margin-top:250px; 
+    height: 40px;
+    margin-left: 44%;
+    animation: spin 0.8s linear infinite;
+}
+#loader{
+    z-index:9999 !important;position:fixed; background-color:black; opacity: 0.5; height:200%; width:100%; margin-top:0% ;top:50px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+body{
+        background-color: #cacaca;
+        margin:100px 0 0;
+    }
+    .container{
+        background-color:white;
+        padding:3px;
+        border-radius:10px;
+        margin: 3px 3px 30px 3px;
+        box-shadow:  10px 10px 10px #888888;
+    }
+
+.logo-div{
+  width:60px;
+  height:auto;
+  background-color: white;
+  margin-top: 0%;
+  padding-top: 0%;
+  margin-left:25%; 
+  border-radius: 10%
+}
+.logo-img{
+  width:100%;
+  height:auto;
+}
+
+.fixed-top-ul-xs {
+   width:100%;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 0px;
+    margin-top: 0;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    bottom:0;
+    border-radius: 0% 0% 0% 0% ;
+    z-index: 1000;
+}
+
+.fixed-top-ul-xs li {
+    float: center;
+}
+
+.fixed-top-ul-xs li a {
+    font-size:20px;
+    text-align: center;
+    display: block;
+    color: white;
+    padding: 7px;
+    text-decoration: none;
+}
+@media screen and (max-width: 400px){
+    ul.navbar-nav li a {
+        padding-left: 70%;
+        float: none;
+    }
+.badge{
+    font-size: 18px;margin-bottom: 3px;color:#333;background-color: white
+}
+</style>
+</head> 
+<body >
+<ul class="fixed-top-ul-xs" id="tp">
+  <li><a href="#" id="orderAmount" class="slide-toggle"><i class="fa fa-shopping-bag" aria-hidden="true"></i> 0.00 Rs <span class="badge" style="font-size:20px">0</span></a></li>
+</ul>
+<div >
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" >
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Web-Portal</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-brand">
+            <div class="logo-div" >
+                    <img class="logo-img" src='/img/logo.png'  alt='Web-Portal Logo'>
+            </div>
+            </div>
+            <div class="navbar-brand">
+                <p class="active" style="color: white">&nbsp Web-Portal</p>
+            </div>
+
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" data-toggle="dropdown" id="catDropdown" class="dropdown-toggle" ><span><i class="fa fa-bars" aria-hidden="true"></i></span> Category <b class="caret"></b></a>
+                  <ul class="dropdown-menu" id="dropdown" style="background-color:#DADADA; border-radius:0 0 10px  10px;">
+
+                  </ul>
+                </li>
+            </ul>
+           
+         <ul class="nav navbar-nav navbar-right">
+                 <li class="active"><a href="#0" id="btnHome"><span><i class="fa fa-home" aria-hidden="true"></i></span> Home </a></li>
+                 <li><a href="#1" id="orderHistory"><span><i class="fa fa-history" aria-hidden="true"></i></span> History</a></li>
+                 <li><a href="#" id="logout"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>&nbsp Logout</a></li>
+                 <li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</li>
+               
+            </ul>
+        </div>
+    </nav>
+    </div>
+
+<div id="loader" >
+ <div class="loader"></div>
+
+</div>
+
+
+<div style="margin-top: 0px"></div>
+<div id="alertMsg" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle" aria-hidden= true style="color: gray"></i></button>
+                <h4 class="modal-title" align="center">Error</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div  id="productPopUp" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="row" style="padding : 10px;padding-left: 20px;padding-bottom: 0px">
+               <!-- <div class="thumbnail" hidden>
+                    <img src="" >
+                </div>
+                 <h4 id="title" hidden>Product Name</h4>
+                    <h4  id="price" hidden>Price Rs/Kg</h4>
+                    <h4 id="fName" hidden>Farmer Name</h4>-->
+                    <h4 id="desc">Product Description.</h4>
+                    <div class="caption col-xs-offset-5">
+                        
+                        
+                        <a type="button" class="btn" data-dismiss="modal" aria-hidden="true" style="color:grey; "><i class="fa fa-times-circle fa-2x" aria-hidden= true></i></a>
+                    </div> 
+            </div>     
+        </div>
+    </div>
+</div>   
+
+<div id="orderPopUp" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnHome" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle" aria-hidden= true style="color: gray"></i></button>
+                <h4 class="modal-title">Your Order</h4>
+            </div>
+            <div class="modal-body">
+                <div id="orderDiv">
+                    <div class="table-responsive"> 
+                        <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>&nbsp &nbsp Qty</th>
+                                        <th >Name</th>
+                                        <th >Price(Rs.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderBody" >
+                                    <!-- Add Order Div-->
+                                </tbody>
+                                <tr>                           
+                                    <th></th>
+                                    <th>Total</th>
+                                    <th id="ttl">0.00 Rs.</th>
+                                </tr>         
+                        </table>    
+                    </div>     
+                    <button type="submit" id="btnBuy" class="btn btn-primary" style="float:right;">Buy Now</button> 
+                </div>         
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="box">
+    <div id="productsDiv"  class="container" hidden>
+    <h2 id="title" align="center" style=>Our Products</h2>    
+    <!--Add table--> 
+    </div>
+
+    <div id="orderHistoryDiv"  class="container" hidden>
+    <div><h2 align="center"> Order History </h2></div>
+    <!--Add Order History--> 
+    </div>
+
+</div>
+<div hidden>
+<div  class="cat-heading" style="margin-bottom: 0%;">
+    <div class="panel-heading" style="background-color:#EBECE8;border-radius: 5px">
+        <p class="panel-title"><b> Category Name in UpperCase </b></p>
+    </div>  
+    <div class="table-responsive" id="cat-table" hidden> 
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td><b>&nbsp &nbsp Quantity</b></td>
+                    <td ><b>Product</b></td>
+                    <td align="right"><b>Price(Rs.)</b></td>
+
+                </tr>
+            </thead>
+            <tbody>
+              <!-- Add Product Row--> 
+            </tbody>
+        </table>
+    <br>
+    <br>
+    </div>
+
+    
+    <div class="empty-cat" id="empty-cat">
+    <h4 align="center"  style="color: gray;border:solid gray 2px; border-top:0px">
+        <i class="fa fa-info-circle" aria-hidden="true" style="color: red"></i>
+        No Product Available.
+        <br>
+        <br>
+    </h4>
+    </div>
+
+</div>
+</div>
+<div hidden>
+</div>
+<div id="product-row" hidden>
+<table>
+<tbody>
+<tr>  
+
+    <td style="width : 30%">
+        <a href="#" id="product-id" onclick='decreaseInQuantity(this.id) ;return false' style="width : 25%">
+            <span style="color:#87B458"><i class="fa fa-minus-circle fa-2x"></i></span>
+        </a>
+          <input type="number" class="quantity" id="product-id-q" min='0' style="color: gray;font-size: 25px;border:0px; width:40%;padding-left: 5px;padding-right: 5px" onkeydown="resize(event)" onblur="updateQuantity(event)" value="0">
+  
+        <a href="#" id="product-id" onclick='increaseInQuantity(this.id) ; return false' style="width : 30%">
+        <span style="color:#87B458"><i class="fa fa-plus-circle fa-2x"></i></span>
+        </a>
+    </td style="width : 35%">
+    <td id="product-id" onclick="showProductDetails(this.id)" >
+        <br>
+        <i class="farmer" style="color: gray; font-size: 12px;white-space: pre-wrap;"> Farmer Name </i>
+    </td>
+    <td align="right" style="width : 25%"> Price </td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div hidden>
+<div id="order-table">
+    <br><br>
+    <div class="row">
+    <h4 class="col-md-10 col-xs-10" style="color:green">&nbsp<span><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp</span></h4>
+    <h4 class="col-md-2 col-xs-2" align="right" style="color:green"><span><i class='fa  fa-check-square-o' aria-hidden='true'></i>&nbsp &nbsp</span></h4>
+    </div>
+     <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th >Price(Rs.)</th>
+                 <th >Amount(Rs.)</th>
+                  <th>Deliver</th>
+              </tr>
+            </thead>
+            <tbody>
+            <!--Add row-->     
+            </tbody>
+            <tr>
+                <th></th>
+                <th></th>
+                <th >Total</th>
+                <th class="total-amount"></th>
+              </tr>
+        </table>
+    </div>
+    <br><br>
+</div>
+</div>
+<div id="order-row" hidden>
+    <table>
+        <tbody>
+            <tr>
+                <td id="product-id" onclick="showProductDetails(this.id)" > Product_Name - 100gms</td>
+                <td> Quantity </td>
+                <td > Price </td>
+                <td >  Amount </td>
+                 <td><i class="fa fa-clock-o" aria-hidden="true"></i></td>
+            </tr> 
+        </tbody>
+    </table>
+</div>
+<div style="height: 80px"></div>
+
+    <!--%%%%%%%%%%%%%%%%%%% FOOTER %%%%%%%%%%%%%%%%%%%%%%%-->
+     <!-- <div class="well well-lg" align="right" style="margin-top: 10%;padding-top:1%; margin-bottom: 0%"><br><br>
+      <button type="button" class="btn btn-info" id="enableButton">Enable Push Notifiations</button>
+
+      </div> 
+
+      <nav role="navigation" class="navbar navbar-inverse" style="margin-bottom:40px; border-radius: 0%;margin-top: 300px">
+        <div >
+           
+                 <ul align="right" style="margin-right: 2%;" class="nav navbar-nav">
+               
+                 <li><a>Web-Portal Team</a></li>
+            </ul>
+        </div>
+    </nav> -->
+
+</body>
+
+  <script type="text/javascript" src="/js/3-6-10-firebase.js"></script>
+    <script src="/js/home-md.js " type="text/javascript"></script>
+    
+
+    <noscript>Your browser does not support JavaScript!</noscript>
+  </html>

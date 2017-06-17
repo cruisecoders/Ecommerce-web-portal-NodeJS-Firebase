@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web-Portal-Home</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Web-Portal">
+  <link rel="apple-touch-icon" href="">
+  <meta name="msapplication-TileImage" content="">
+  <meta name="msapplication-TileColor" content="#2aabd2">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css" >
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css"  >
+<link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="js/jquery.form.min.js"></script>
+
+
+</script>
+<style type="text/css">
+
+
+input[type='radio'] {
+  -webkit-appearance:none;
+  width:20px;
+  height:20px;
+  border:1px solid darkgray;
+  border-radius:50%;
+  outline:none;
+  box-shadow:0 0 5px 0px gray inset;
+}
+
+input[type='radio']:hover {
+  box-shadow:0 0 5px 0px orange inset;
+}
+
+input[type='radio']:before {
+  content:'';
+  display:block;
+  width:60%;
+  height:60%;
+  margin: 20% auto;    
+  border-radius:50%;    
+}
+.yes input[type='radio']:checked:before {
+  background:green;
+}
+
+.no input[type='radio']:checked:before {
+  background:red;
+}
+    h1{
+        margin: 30px 0;
+        padding: 0 200px 15px 0;
+        border-bottom: 1px solid #E5E5E5;
+    }
+  .bs-example{
+      margin: 20px;
+    }
+     .loader {
+        float:center;
+    border: 6px solid white; /* Light grey */
+    border-top: 6px solid blue; /* Green */
+    border-radius: 50%;
+    width: 40px;
+    margin-top:250px; 
+    height: 40px;
+    margin-left: 44%;
+    animation: spin 0.8s linear infinite;
+}
+
+#loader{
+    z-index:9999 !important;position:fixed; background-color:black; opacity: 0.5; height:200%; width:100%; margin-top:0% ;top:50px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    .logo-div{
+        width:60px;
+        height:auto;
+        background-color: white;
+        margin-top: 0%;
+        padding-top: 0%;
+        margin-left:25% ;
+        border-radius: 10%
+    }
+    .logo-img{
+        width:100%;
+        height:auto;
+    }
+    body{
+        background-color: #cacaca;
+    }
+    .container{
+        background-color:white;
+
+        padding:3% 3% 3% 3%;
+        
+        border-radius:30px; 
+        margin-top: 100px;
+        margin-bottom: 60px; 
+    }
+
+@media screen and (max-width: 400px){
+    ul.navbar-nav li a {
+        padding-left: : 70%;
+        float: none;
+    }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+</head> 
+<body >
+
+    <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" >
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Web-Portal</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div  class="navbar-brand">
+            <div  class="logo-div">
+                    <img class="logo-img" src='/img/logo.png' alt='Logo'>
+            </div>
+            </div>
+            <div class="navbar-brand">
+                <p class="active" style="color: white">&nbsp Web-Portal &nbsp</p>
+            </div>
+
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                  <a href="#" data-toggle="dropdown" id="catDropdown" class="dropdown-toggle" ><span> <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></span> Category <b class="caret"></b></a>
+                  <ul class="dropdown-menu" id="dropdown" style="background-color:#DADADA; border-radius:0 0 10px  10px;">
+
+                  </ul>
+                </li> 
+            </ul>
+           
+         <ul class="nav navbar-nav navbar-right">
+            <li><a href="#0" id ="btnProduct"><span><i class="fa fa-home" aria-hidden="true"></i></span> Home</a></li>
+            
+   <li><a href="#1"  id="btnCustomer"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> Add User</a></li>   
+             <li><a href="#2" id ="btnAddProduct"><span><i class="fa fa-cart-plus" aria-hidden="true"></i></span> Add Product</a></li>
+              <li><a href="#3" id ="btnOrder"><span><i class="fa fa-clock-o" aria-hidden="true"></i></span> Orders</a></li>
+              <li>
+                  <a href="#" id="logout" class="tip-bottom" data-toggle="tooltip" title="Logout" ><span><i class="fa fa-sign-out " aria-hidden="true"></i></span></a>
+             </li>
+           
+            <li> &nbsp  &nbsp </li>
+               
+            </ul>
+        </div>
+    </nav>
+
+
+<div id="loader" hidden>
+ <div class="loader"></div>
+</div>
+<p id="btnAddUser" hidden></p>
+<div id="alertMsg" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnHome" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times-circle " aria-hidden= true style="color: gray"></i></button>
+                <h4 class="modal-title" align="center">User Registered.</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div  id="productPopUp" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="thumbnail" hidden>
+                    <img src="" >
+                </div>
+                <!-- <h4 id="title">Product Name</h4>
+                    <h4  id="price">Price Rs/Kg</h4>
+                    <h4 id="fName">Farmer Name</h4>-->
+                    <div class="caption">
+                        <p>Product Description.</p>
+                        
+                        <button type="button" id="btnHome" class="btn btn-danger" data-dismiss="modal" aria-hidden="true" style="margin-left: 48%"><i class="fa fa-times-circle fa-2x" aria-hidden= true style="color: gray"></i></button>
+                    </div> 
+            </div>     
+        </div>
+    </div>
+</div>  
+   <div id="productForm"   class="col-xs-12">
+   <br>
+<div class="container">
+<div class="bs-example" style="border-radius: 0">
+    <h2 align="center">Add Product</h2>
+    <hr>
+    <br>
+    <br>
+    <form class="form-horizontal" method="post" id="addProductForm"  >
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="cat">Category:</label>
+            <div class="col-xs-9">
+                <select name="category" class="form-control" id="cat" required>
+                    <option value=0> Select - Category</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="name">Product Name:</label>
+            <div class="col-xs-9">
+                <input type="text" name="name"  class="form-control" id="name"  placeholder="Product Name" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="fname">Purchased From:</label>
+            <div class="col-xs-9">
+                <input type="text" name="purchased-from"  class="form-control" id="fname"  placeholder="Purchased From" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="quantity">Quantity:</label>
+            <div class="col-xs-9">
+                <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity" required>
+            </div>
+        </div>
+         <div class="form-group">
+            <label class="control-label col-xs-3" for="price">Price:</label>
+            <div class="col-xs-9">
+                <input type="number" step = "0.1" name="price" class="form-control" id="price" placeholder="Price" required>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="per">Units:</label>
+            <div class="col-xs-9">
+                <select name="measuredIn" id="per" class="form-control" >
+                  <option value="">Units</option>
+                  <option value="kg">kg</option>
+                  <option value="L">L</option>
+                  <option value="pack">Pack</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+         <label class="control-label col-xs-3" for="f">Packaging:</label>
+         <div class="col-xs-9" >
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="0.050" >&nbsp 0.050 Units
+            </div>
+            
+      
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="0.100" > &nbsp 0.100 Units
+            </div>
+            
+        
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="0.250" > &nbsp 0.250 Units
+            </div>
+            
+     
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="0.500" >&nbsp 0.500 Units
+            </div>
+             
+       
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="0.750" >&nbsp 0.750 Units
+            </div>
+            
+       
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="1" checked >&nbsp 1.00 Units
+            </div>
+          
+        
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="2" > &nbsp 2.00 Units
+            </div>
+        
+        
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="5" > &nbsp 5.00 Units
+            </div>
+            
+       
+        
+            <div class="col-xs-4">
+                <input type="checkbox" class="form-controm " name="package" value="10" > &nbsp 10.00 Units
+            </div>
+            
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="d">Description:</label>
+            <div class="col-xs-9">
+                <textarea rows="3" name="description"  class="form-control" id="d" placeholder="Description" ></textarea>
+            </div>
+        </div>
+  
+        <br>
+        <div class="form-group">
+            <div class="col-xs-offset-3 col-xs-9">
+                <input type="button" id="addPro" onclick = "checkedproduct(this.form)" class="btn btn-primary" value="Add Product">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+        </div>
+    </form>
+    </div>
+    </div>
+   
+    <div class="container">
+    <h2 align="center">Add Category</h2>
+    <hr>
+     <div id = "addCategoryForm" class="form-horizontal" >
+     <div class="form-group">
+            <label class="control-label col-xs-3" for="cname">Category Name:</label>
+            <div class="col-xs-9">
+                <input type="text" name="catName" list="categoryNameList"  class="form-control" id="cname"  placeholder="Category Name" >
+                <datalist id="categoryNameList">
+                    
+                </datalist>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="col-xs-offset-3 col-xs-9">
+                <input type="button" id="addcat" onclick="addCategory(this)" class="btn btn-primary" value="Add Category" >
+                
+            </div>
+        </div>
+      </div>
+   </div>
+
+    </div>
+   <div id="customerDiv" hidden>
+    <div class="container" id="registration-tab">
+    <h2 align="center">Add User</h2>
+    <hr>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="user_email">Email:</label>
+            <div class="col-xs-7">
+                <input type="email" class="form-control" list="emailList" id="user_email" placeholder="Email">
+                <datalist id="emailList">
+
+                </datalist>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="first_name">First Name:</label>
+            <div class="col-xs-7">
+                <input type="text" class="form-control" id="first_name" placeholder="First Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="last_name">Last Name:</label>
+            <div class="col-xs-7">
+                <input type="text" class="form-control" id="last_name" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="mobile">Phone:</label>
+            <div class="col-xs-7">
+                <input type="tel" class="form-control" id="mobile" placeholder="Phone Number">
+            </div>
+        </div>
+
+       <!-- <div class="form-group">
+            <label class="control-label col-xs-3" for="postalAddress">Address:</label>
+            <div class="col-xs-7">
+                <textarea rows="3" class="form-control" id="postalAddress" placeholder="Postal Address"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-xs-3" for="ZipCode">Pin Code:</label>
+            <div class="col-xs-7">
+                <input type="number" class="form-control" id="ZipCode" placeholder="Pin Code">
+            </div>
+        </div>  -->
+      
+        <br>
+        <div class="form-group">
+            <div class="col-xs-offset-3 col-xs-7">
+                <input type="submit" id="sign-up-for-client" class="btn btn-primary" value="Submit">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="customerTab">
+    <div class="container table-responsive" style="margin-top:40px;margin-bottom: 40px"> 
+<h2 align="center">Users Details</h2>
+<hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp User Name</th>
+                <th><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp Email Address</th>
+                <th><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp Phone No.</th>
+                <th><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp Update</th>
+                <th><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp Delete</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody"> 
+             
+                  
+            </tbody>
+        </table>
+            <br>
+    </div>
+</div>
+   </div>
+<div class="container" id="productDiv" hidden>
+
+   <div><h2 align="center">Our Products</h2> <hr> <br></div>
+
+    <!--Add table--> 
+
+    
+ </div>
+
+<!--************************* Registration TAB *******************************-->
+
+
+<div id="orderDiv"  hidden>
+    <div class="container" style="padding-left:10%;padding-right:10% ;padding-bottom: 10%">
+        <h2 align="center">Pending Orders for Delivery</h2>
+        <hr>  
+          <br>
+         <label class="" >Select Delivery Date:</label>
+        <div class="input-group margin-bottom-sm " style="width: 300px;" > 
+          <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+          <input class="form-control" type="date" id = "deliveryDate" >
+        </div>
+         <div class="tables">
+              
+          </div>
+        <br><br>
+    </div>
+</div>
+
+<div hidden>
+<div  class="cat-heading" style="margin-bottom: 0%;">
+    <div class="panel-heading" style="background-color:#EBECE8;border-radius: 10px">
+        <p class="panel-title"><b> Category Name in UpperCase </b></p>
+    </div> 
+
+    <div class="table-responsive" id="cat-table" hidden> 
+            <table class="table table-hover">
+                <thead>
+                    <tr>  
+                        <th>Name</th>
+                        <th>Package</th>
+                        <th>Stock</th>
+                        <th>Price(Rs.)</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <br>
+            <br>
+            
+    </div>
+    <div class="empty-cat" id="empty-cat">
+        <h4 align="center"   style="color: gray;border:solid #EBECE8 2px; border-top:0px">
+        <i class="fa fa-info-circle" aria-hidden="true" style="color: red"></i>
+        No Product Available.
+        <br>
+        <br>
+        </h4> 
+        <br>
+        <br>
+    </div>
+ 
+</div>
+</div>
+
+<div id="product-row" hidden>
+<table>
+<tbody>
+<tr>               
+    <td id="pid" onclick="showProductDetails(this.id)"><br>
+        <i class="farmer" style="color: gray; font-size: 12px"> Farmer Name </i>    </td>
+    <td>(<i style="white-space: pre-wrap;"> 0.1,1,2 </i>)</td>                        
+    <td><input  type="number" min="0" style="width:60px;padding-left:5px;border:0px" id="pid-q"  value="inStock"></td>
+    <td > <input type="number" style="width:60px;padding-left:5px;border:0px" id="pid-p" min="0" value="price" >  </td>
+
+    <td > <a href="#" id="pid" onclick="changeQuantity(this.id) ; return false">Update </a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div hidden>
+<div id="user-row">
+<table>
+    <tbody>
+            <tr id="uid">
+               <td><input type="text" style="border:0px;width:120px" value="username"> </td>
+               <td>prasandev14@gmail.com</td> 
+               <td>+91&nbsp<input type="number" value="9017613156"  style="border:0px;width:100px"></td>
+               <td><a href="#" id="uid" onclick="updateUserDetails(this)">Update</a></td>
+               <td><a href="#" id="uid" onclick="deleteUserRecord(this)">Delete</a></td>
+            </tr>
+    </tbody>
+</table>
+</div>
+</div>
+<div id="order-table" hidden>
+
+ <div class="table-responsive" style="border-bottom: solid 3px gray"> 
+    <table class="table table-hover">     
+      <h5 style="color: gray">User Name : UserName</h5>
+      <h5  style="color: gray">Order At : Date</h5>
+        <thead>
+          <tr>           
+            <th>Name</th>
+            <th>Qty</th>
+            <td ><b style="margin-left:59%">Packed</b></td>
+          </tr>
+        </thead>
+        <tbody id ="orderID">
+    </tbody>      
+    </table>
+   
+          <button id ="orderId"  onclick = "deliverProductToServer(this)" class="btn btn-info">&nbsp Confirm &nbsp</button>
+          <br><br>
+   
+    </div>
+</div>
+
+<div id="order-row" hidden>
+<table>
+<tbody>
+   <tr>
+        <td >Product Name - 100gms</td>
+        <td>Quantity</td>
+        <td align="right">
+            <div class="no col-xs-3" style="float:right;right:0">
+            <input class="no" type="radio" name="pid" onclick="removeProductFromOrder(this)" style="height:20px;width:20px;" >&nbsp No
+            </div>
+            <div class="yes col-xs-3" align="right" style="float:right;right:0">
+            &nbsp<input class="yes" type="radio" name="pid" style="height:20px;width:20px;"  onclick="addProductIntoOrder(this)" >&nbsp Yes
+            </div>
+        </td>
+    </tr>
+</tbody>
+</table>
+</div>
+    <!--%%%%%%%%%%%%%%%%%%% FOOTER %%%%%%%%%%%%%%%%%%%%%%%-->
+   <!--   <div class="well well-lg" align="right" style="margin-top: 10%;padding-top:1%; margin-bottom: 0%"><br><br>
+      <button type="button" class="btn btn-info" id="enableButton">Enable Push Notifiations</button>
+
+      </div>  -->
+
+
+</body>
+
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>-->
+
+
+<script type="text/javascript" src="/js/3-6-10-firebase.js"></script>
+<script type="text/javascript">
+     $(".tip-bottom").tooltip({
+        placement : 'bottom'
+    }); 
+</script>
+<script src="/js/adminHome.js " type="text/javascript"></script>
+    <noscript>Your browser does not support JavaScript!</noscript>
+  </html>
